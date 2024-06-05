@@ -1,3 +1,4 @@
+
 """Initial migration for Todo model
 
 Revision ID: fea9bd30c394

@@ -5,7 +5,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('alembic', '.'),('alembic.ini', '.'),('app', '.'),],
+    datas=[('alembic', 'data/alembic'), ('alembic.ini', 'data/alembic.ini')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

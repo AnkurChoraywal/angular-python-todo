@@ -29,7 +29,7 @@ export DB_NAME=<value>
 > pip install -r requirements.txt
 
 3. Create Binary
-> pyinstaller main.spec
+> pyinstaller --add-data="alembic:data/alembic" --add-data="alembic.ini:data/alembic.ini" --onefile main.py
 
 4. Create a shell file (`set_env.sh`) and setup these env vars
 ```

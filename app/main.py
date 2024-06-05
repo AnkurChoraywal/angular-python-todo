@@ -24,6 +24,9 @@ async def rewrite_url(request, call_next):
     response = await call_next(request)
     return response
 
+@app.get("/")
+async def hello():
+    return {"message": "hello world"}
 
 @app.get("/todos")
 async def read_todos():

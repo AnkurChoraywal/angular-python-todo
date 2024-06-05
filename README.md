@@ -10,6 +10,7 @@
 pyinstaller main.spec
 
 ## Create shell script to set env vars
+```
 export ALLOWED_ORIGINS=google.com
 export APP_ROUTE=/myapp
 export DB_USERNAME=<value>
@@ -17,6 +18,7 @@ export DB_PASSWORD=<value>
 export DB_HOST=<value>
 export DB_PORT=3306
 export DB_NAME=<value>
+```
 
 ## Setup
 1. Create virtual env

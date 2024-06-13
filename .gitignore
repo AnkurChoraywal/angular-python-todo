@@ -5,3 +5,4 @@ __pycache__
 build
 dist
 set_env.sh
+set_env.bat

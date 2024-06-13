@@ -46,7 +46,7 @@ async def delete_todo_by_id(todo_id: int):
 
 
 @app.patch("/todos/{todo_id}")
-async def update_todo_completion(todo_id: int, completed: bool):
+async def update_todo(todo_id: int, completed: bool):
     if update_todo_completion(todo_id, completed):
         return {"message": "Todo completion updated successfully"}
     return {"message": "Todo not found"}

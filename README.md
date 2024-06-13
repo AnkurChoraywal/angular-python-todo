@@ -46,3 +46,6 @@ Run this file to set env vars
 
 5. Run binary
 > ./dist/main
+
+
+## ##

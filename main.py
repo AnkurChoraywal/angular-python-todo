@@ -1,4 +1,6 @@
 import uvicorn
+from dotenv import load_dotenv
+load_dotenv()
 from app.main import app
 import sys
 import os
@@ -21,13 +23,13 @@ def get_db_url():
 
 def get_file(file):
     if hasattr(sys, '_MEIPASS'):
-        return os.path.join(sys._MEIPASS, file)
+        return os.path.join(sys._MEIPASS, 'data', file)
     return os.path.join(os.path.dirname(__file__), file)
 
 
 if __name__ == "__main__":
-    alembic_cfg = Config(get_file('data/alembic.ini'))
-    alembic_cfg.set_main_option('script_location', get_file('data/alembic'))
+    alembic_cfg = Config(get_file('alembic.ini'))
+    alembic_cfg.set_main_option('script_location', get_file('alembic'))
     alembic_cfg.set_main_option('sqlalchemy.url', get_db_url())
     command.upgrade(alembic_cfg, 'head')
     uvicorn.run(app, host="0.0.0.0", port=8080)

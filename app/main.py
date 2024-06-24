@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from app.crud import get_all_todos, create_todo, delete_todo, update_todo_completion
 import os
@@ -49,4 +51,11 @@ async def update_todo_status(todo_id: int, completed: bool):
     if update_todo_completion(todo_id, completed):
         return {"message": "Todo completion updated successfully"}
     return {"message": "Todo not found"}
- 
+
+# Redirect to Index.html
+@app.get("/")
+async def redirect_old_path():
+    return RedirectResponse(url="/index.html", status_code=302)
+
+# Mount static files
+app.mount("/", StaticFiles(directory="static"), name="static")

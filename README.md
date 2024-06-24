@@ -46,3 +46,11 @@ Run this file to set env vars
 
 5. Run binary
 > ./dist/main
+
+
+### Angular Setup
+Angular Version: 16
+
+Setup
+> npm i
+> npm run start

@@ -30,7 +30,6 @@ def get_file(file):
     if hasattr(sys, '_MEIPASS'):
         print('binary mode: reading from _MEIPASS temp directory')
         return os.path.join(sys._MEIPASS, 'data', file)
-    print('source code mode: reading from filesystem')
     return os.path.join(os.path.dirname(__file__), file)
 
 @app.get("/health")
@@ -66,22 +65,23 @@ async def redirect_old_path():
     return RedirectResponse(url="/index.html", status_code=302)
 
 # Mount static files
-app.mount("/", StaticFiles(directory=get_file("static")), name="static")
+app.mount("/", StaticFiles(directory=get_file("../static")), name="static")
 
 
 def prepare_static_folder():
     localhost = 'http://localhost:8080'
-    newApiHost = os.environ['API_HOST']
-    folder_path = get_file('static')
+    newApiHost = f"{os.environ['API_HOST']}{APP_ROUTE}"
+    ignoreFiles = ['favicon.ico']
+    folder_path = get_file('../static')
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
-        if os.path.isfile(file_path):
-            with open(file_path, 'r') as file:
+        if os.path.isfile(file_path) and not any(ignore in file_path for ignore in ignoreFiles):
+            with open(file_path, 'r', encoding='utf-8') as file:
                 print(f'Reading file: {file_path}')
                 file_contents = file.read()
             if localhost in file_contents:
                 print(f'localhost found in file: {file_path}')
                 file_contents = file_contents.replace(localhost, newApiHost)
-            with open(file_path, 'r') as file:
-                print(f'localhost replaced to API_HOST in file: {file_path}')
-                file.write(file_contents)
+                with open(file_path, 'w', encoding='utf-8') as file:
+                    print(f'localhost replaced to {newApiHost} in file: {file_path}')
+                    file.write(file_contents)

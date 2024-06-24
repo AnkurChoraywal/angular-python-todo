@@ -18,6 +18,7 @@ export DB_PASSWORD=<value>
 export DB_HOST=<value>
 export DB_PORT=3306
 export DB_NAME=<value>
+export API_HOST=<value>
 ```
 
 ## Setup
@@ -46,3 +47,14 @@ Run this file to set env vars
 
 5. Run binary
 > ./dist/main
+
+
+### Angular Setup
+Angular Version: 16
+
+Setup
+> npm i
+
+> npm run start
+
+> npm run build

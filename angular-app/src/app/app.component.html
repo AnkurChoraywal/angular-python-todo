@@ -1,0 +1,49 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+Angular Python Todo Application
+<br><br>
+<fieldset>
+  <legend>Add new Todo</legend>
+  <form (ngSubmit)="onSubmitNewTodo(formData)">
+    <label for="title">Todo Title: </label>
+    <input type="text" id="title" name="title" [(ngModel)]="formData.title" required/><br>
+    <input type="submit" value="Submit">
+  </form>
+</fieldset>
+
+<br><br>
+<fieldset>
+  <legend>List of Todos</legend>
+  <div *ngIf="todoList.length > 0">
+    <ul>
+      <li *ngFor="let item of todoList;">
+        <input type="checkbox" value="false" [(ngModel)]="item.completed" (change)="onCheckboxChange($event, item.id)"/>
+        {{ item.title }}
+        <button (click)="deleteTodo(item.id)">X</button>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="todoList.length === 0">
+    No Todo's available
+  </div>
+  
+</fieldset>
+
+
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<router-outlet></router-outlet>
